@@ -32,6 +32,7 @@ private
 {
     import etc.c.zlib;
     import dlib.core.memory;
+	import std.conv:to;
 }
 
 struct ZlibBufferedEncoder
@@ -73,7 +74,8 @@ struct ZlibBufferedEncoder
             {
                 deflateEnd(&zlibStream);
                 ended = true;
-                return zlibStream.total_out;
+                //return zlibStream.total_out;
+				return zlibStream.total_out.to!uint;
             }
             else if (msg != Z_OK)
             {
@@ -82,7 +84,8 @@ struct ZlibBufferedEncoder
             }
         }
         
-        return zlibStream.total_out;
+        //return zlibStream.total_out;
+        return zlibStream.total_out.to!uint;
     }
 }
 
